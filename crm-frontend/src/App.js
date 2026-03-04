@@ -6,6 +6,8 @@ import Login from "./Login";
 import Customers from "./pages/Customers";
 import Leads from "./pages/Leads";
 import Tasks from "./pages/Tasks";
+import Sales from "./pages/Sales";
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +20,7 @@ function App() {
         <Route path="/customers" element={<Customers />} />
         <Route path="/leads" element={<Leads/>}/>
         <Route path="/tasks" element={<Tasks/>}/>
+        <Route path="/sales" element={<Sales/>}/>
 
       </Routes>
 
