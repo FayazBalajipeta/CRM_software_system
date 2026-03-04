@@ -1,0 +1,114 @@
+/* Main Layout */
+
+.dashboard-layout{
+display:flex;
+}
+
+/* Dashboard Content Area */
+
+.dashboard-content{
+margin-left:220px;
+padding:30px;
+width:100%;
+background:#f4f6fb;
+min-height:100vh;
+}
+
+/* Header */
+
+.dashboard-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.dashboard-header h2{
+font-weight:600;
+font-size:24px;
+color:#333;
+}
+
+/* Logout Button */
+
+.logout-btn{
+background:#ff4d4f;
+border:none;
+color:white;
+padding:8px 16px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+transition:0.2s;
+}
+
+.logout-btn:hover{
+background:#e63946;
+}
+
+/* Cards Grid */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+/* Card Design */
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 15px rgba(0,0,0,0.05);
+transition:all 0.3s;
+text-align:center;
+}
+
+/* Card Hover Animation */
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Card Icon */
+
+.icon{
+font-size:32px;
+margin-bottom:10px;
+}
+
+/* Card Title */
+
+.card h3{
+font-size:16px;
+color:#666;
+margin-bottom:10px;
+}
+
+/* Card Number */
+
+.card p{
+font-size:26px;
+font-weight:600;
+color:#111;
+}
+
+/* Card Colors */
+
+.customers{
+border-left:5px solid #4e73df;
+}
+
+.leads{
+border-left:5px solid #1cc88a;
+}
+
+.tasks{
+border-left:5px solid #f6c23e;
+}
+
+.sales{
+border-left:5px solid #e74a3b;
+}

@@ -1,0 +1,117 @@
+/* Main layout */
+
+.dashboard-layout{
+display:flex;
+}
+
+/* Content area */
+
+.customers-content{
+margin-left:220px;
+padding:30px;
+width:100%;
+background:#f4f6fb;
+min-height:100vh;
+}
+
+/* Page title */
+
+.customers-content h2{
+margin-bottom:20px;
+}
+
+/* Form layout */
+
+.customer-form{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-bottom:25px;
+}
+
+/* Inputs */
+
+.customer-form input,
+.customer-form textarea{
+padding:10px;
+border-radius:6px;
+border:1px solid #ddd;
+font-size:14px;
+}
+
+/* Notes full width */
+
+.customer-form textarea{
+grid-column:span 3;
+}
+
+/* Button */
+
+.customer-form button{
+grid-column:span 3;
+background:#4e73df;
+color:white;
+border:none;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+font-weight:500;
+}
+
+.customer-form button:hover{
+background:#2e59d9;
+}
+
+/* Table */
+
+.customers-table{
+width:100%;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Table cells */
+
+.customers-table th,
+.customers-table td{
+padding:14px;
+text-align:left;
+border-bottom:1px solid #eee;
+}
+
+/* Table header */
+
+.customers-table th{
+background:#f8f9fc;
+font-weight:600;
+}
+
+/* Delete button */
+
+.delete-btn{
+background:#e74a3b;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.delete-btn:hover{
+background:#c0392b;
+}
+.edit-btn{
+background:#4e73df;
+color:white;
+border:none;
+padding:6px 12px;
+margin-right:6px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.edit-btn:hover{
+background:#2e59d9;
+}

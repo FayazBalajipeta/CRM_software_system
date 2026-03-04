@@ -1,0 +1,45 @@
+.tasks-content{
+margin-left:220px;
+padding:30px;
+width:100%;
+background:#f4f6fb;
+min-height:100vh;
+}
+
+.task-form{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-bottom:25px;
+}
+
+.task-form input,
+.task-form select{
+padding:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.task-form button{
+grid-column:span 3;
+background:#4e73df;
+color:white;
+border:none;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.tasks-table{
+width:100%;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tasks-table th,
+.tasks-table td{
+padding:14px;
+border-bottom:1px solid #eee;
+}
