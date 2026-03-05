@@ -231,7 +231,7 @@ crm-project
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/yourusername/crm-system.git
+git clone https://github.com/FayazBalajipeta/crm-system.git
 
 🔧 Backend Setup (Spring Boot)
 
