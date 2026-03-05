@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="sales")
+@Table(name = "sales")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,8 +18,6 @@ public class Sale {
 
     private String dealName;
 
-    private String customer;
-
     private Double amount;
 
     private String stage;
@@ -27,4 +25,10 @@ public class Sale {
     private LocalDate closingDate;
 
     private String salesRep;
+
+    // 🔗 Link Sale → Customer
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
 }

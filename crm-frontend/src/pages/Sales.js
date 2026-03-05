@@ -5,214 +5,227 @@ import "./Sales.css";
 
 function Sales() {
 
-  const [sales, setSales] = useState([]);
-  const [editingId, setEditingId] = useState(null);
+const [sales,setSales] = useState([]);
+const [customers,setCustomers] = useState([]);
+const [editingId,setEditingId] = useState(null);
 
-  const [form, setForm] = useState({
-    dealName: "",
-    customer: "",
-    amount: "",
-    stage: "Prospect",
-    closingDate: "",
-    salesRep: ""
-  });
+const [form,setForm] = useState({
+dealName:"",
+customerId:"",
+amount:"",
+stage:"Prospect",
+closingDate:"",
+salesRep:""
+});
 
-  useEffect(() => {
-    fetchSales();
-  }, []);
+useEffect(()=>{
+fetchSales();
+fetchCustomers();
+},[]);
 
-  // Fetch sales from backend
-  const fetchSales = async () => {
-    try {
-      const res = await axios.get("http://localhost:8081/api/sales");
-      setSales(res.data);
-    } catch (error) {
-      console.error("Error fetching sales:", error);
-    }
-  };
+const fetchSales = async ()=>{
+const res = await axios.get("http://localhost:8081/api/sales");
+setSales(res.data);
+};
 
-  // Handle form input change
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+const fetchCustomers = async ()=>{
+const res = await axios.get("http://localhost:8081/api/customers");
+setCustomers(res.data);
+};
 
-  // Add or Update sale
-  const handleSubmit = async () => {
-    try {
+const handleChange = (e)=>{
+setForm({...form,[e.target.name]:e.target.value});
+};
 
-      if (editingId) {
-        await axios.put(`http://localhost:8081/api/sales/${editingId}`, form);
-        setEditingId(null);
-      } else {
-        await axios.post("http://localhost:8081/api/sales", form);
-      }
+const handleSubmit = async ()=>{
 
-      setForm({
-        dealName: "",
-        customer: "",
-        amount: "",
-        stage: "Prospect",
-        closingDate: "",
-        salesRep: ""
-      });
+const payload = {
+...form,
+customer:{ id: form.customerId }
+};
 
-      fetchSales();
+if(editingId){
 
-    } catch (error) {
-      console.error("Error saving sale:", error);
-    }
-  };
+await axios.put(`http://localhost:8081/api/sales/${editingId}`,payload);
+setEditingId(null);
 
-  // Edit sale
-  const handleEdit = (sale) => {
-    setForm(sale);
-    setEditingId(sale.id);
-  };
+}else{
 
-  // Delete sale
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8081/api/sales/${id}`);
-      fetchSales();
-    } catch (error) {
-      console.error("Error deleting sale:", error);
-    }
-  };
+await axios.post("http://localhost:8081/api/sales",payload);
 
-  return (
+}
 
-    <div className="dashboard-layout">
+setForm({
+dealName:"",
+customerId:"",
+amount:"",
+stage:"Prospect",
+closingDate:"",
+salesRep:""
+});
 
-      <Sidebar />
+fetchSales();
+};
 
-      <div className="sales-content">
+const handleEdit=(sale)=>{
 
-        <h2>Sales Management</h2>
+setForm({
+dealName:sale.dealName,
+customerId:sale.customer?.id || "",
+amount:sale.amount,
+stage:sale.stage,
+closingDate:sale.closingDate,
+salesRep:sale.salesRep
+});
 
-        {/* Form */}
-        <div className="sale-form">
+setEditingId(sale.id);
 
-          <input
-            name="dealName"
-            placeholder="Deal Name"
-            value={form.dealName}
-            onChange={handleChange}
-          />
+};
 
-          <input
-            name="customer"
-            placeholder="Customer"
-            value={form.customer}
-            onChange={handleChange}
-          />
+const handleDelete=async(id)=>{
+await axios.delete(`http://localhost:8081/api/sales/${id}`);
+fetchSales();
+};
 
-          <input
-            type="number"
-            name="amount"
-            placeholder="Amount"
-            value={form.amount}
-            onChange={handleChange}
-          />
+return(
 
-          <select
-            name="stage"
-            value={form.stage}
-            onChange={handleChange}
-          >
-            <option>Prospect</option>
-            <option>Negotiation</option>
-            <option>Won</option>
-            <option>Lost</option>
-          </select>
+<div className="dashboard-layout">
 
-          <input
-            type="date"
-            name="closingDate"
-            value={form.closingDate}
-            onChange={handleChange}
-          />
+<Sidebar/>
 
-          <input
-            name="salesRep"
-            placeholder="Sales Rep"
-            value={form.salesRep}
-            onChange={handleChange}
-          />
+<div className="sales-content">
 
-          <button onClick={handleSubmit}>
-            {editingId ? "Update Deal" : "Add Deal"}
-          </button>
+<h2>Sales Management</h2>
 
-        </div>
+<div className="sale-form">
 
-        {/* Table */}
-        <table className="sales-table">
+<input
+name="dealName"
+placeholder="Deal Name"
+value={form.dealName}
+onChange={handleChange}
+/>
 
-          <thead>
-            <tr>
-              <th>Deal</th>
-              <th>Customer</th>
-              <th>Amount</th>
-              <th>Stage</th>
-              <th>Closing Date</th>
-              <th>Sales Rep</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+<select
+name="customerId"
+value={form.customerId}
+onChange={handleChange}
+>
+<option value="">Select Customer</option>
 
-          <tbody>
+{customers.map(c=>(
+<option key={c.id} value={c.id}>
+{c.name}
+</option>
+))}
 
-            {sales.map((s) => (
-              <tr key={s.id}>
+</select>
 
-                <td>{s.dealName}</td>
+<input
+type="number"
+name="amount"
+placeholder="Amount"
+value={form.amount}
+onChange={handleChange}
+/>
 
-                <td>{s.customer}</td>
+<select
+name="stage"
+value={form.stage}
+onChange={handleChange}
+>
+<option>Prospect</option>
+<option>Negotiation</option>
+<option>Won</option>
+<option>Lost</option>
+</select>
 
-                <td style={{ fontWeight: "600", color: "#1cc88a" }}>
-                  ${s.amount}
-                </td>
+<input
+type="date"
+name="closingDate"
+value={form.closingDate}
+onChange={handleChange}
+/>
 
-                <td>
-                  <span className={`stage stage-${s.stage.toLowerCase()}`}>
-                    {s.stage}
-                  </span>
-                </td>
+<input
+name="salesRep"
+placeholder="Sales Rep"
+value={form.salesRep}
+onChange={handleChange}
+/>
 
-                <td>{s.closingDate}</td>
+<button onClick={handleSubmit}>
+{editingId ? "Update Deal" : "Add Deal"}
+</button>
 
-                <td>{s.salesRep}</td>
+</div>
 
-                <td>
+<table className="sales-table">
 
-                  <button
-                    className="edit-btn"
-                    onClick={() => handleEdit(s)}
-                  >
-                    Edit
-                  </button>
+<thead>
+<tr>
+<th>Deal</th>
+<th>Customer</th>
+<th>Amount</th>
+<th>Stage</th>
+<th>Closing Date</th>
+<th>Sales Rep</th>
+<th>Action</th>
+</tr>
+</thead>
 
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDelete(s.id)}
-                  >
-                    Delete
-                  </button>
+<tbody>
 
-                </td>
+{sales.map((s)=>(
+<tr key={s.id}>
 
-              </tr>
-            ))}
+<td>{s.dealName}</td>
 
-          </tbody>
+<td>{s.customer?.name}</td>
 
-        </table>
+<td>${s.amount}</td>
 
-      </div>
+<td>
+<span className={`stage stage-${s.stage.toLowerCase()}`}>
+{s.stage}
+</span>
+</td>
 
-    </div>
+<td>{s.closingDate}</td>
 
-  );
+<td>{s.salesRep}</td>
+
+<td>
+
+<button
+className="edit-btn"
+onClick={()=>handleEdit(s)}
+>
+Edit
+</button>
+
+<button
+className="delete-btn"
+onClick={()=>handleDelete(s.id)}
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+))}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+);
+
 }
 
 export default Sales;
