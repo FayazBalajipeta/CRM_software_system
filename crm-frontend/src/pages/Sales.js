@@ -183,7 +183,7 @@ onChange={handleChange}
 
 <td>{s.customer?.name}</td>
 
-<td>${s.amount}</td>
+<td>₹{s.amount}</td>
 
 <td>
 <span className={`stage stage-${s.stage.toLowerCase()}`}>
