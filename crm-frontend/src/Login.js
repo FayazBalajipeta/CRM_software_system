@@ -6,28 +6,58 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
+
     try {
 
-      const { data } = await axios.post("http://localhost:8081/api/login", {
+      setLoading(true);
+
+      const response = await axios.post("http://localhost:8081/api/login", {
         email: email,
         password: password
       });
 
-      // store JWT token
+      const data = response.data;
+
+      // Save JWT token
       localStorage.setItem("token", data.token);
 
-      // redirect to dashboard
+      // Save user email for Navbar
+      localStorage.setItem("userEmail", email);
+
+      // Redirect to dashboard
       window.location.href = "/dashboard";
 
     } catch (error) {
-      alert("Login failed. Please check email or password.");
+
+      if (error.response) {
+        alert(error.response.data || "Invalid email or password");
+      } else {
+        alert("Server not reachable. Check backend.");
+      }
+
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Allow Enter key login
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
     }
   };
 
   return (
     <div className="login-page">
+
       <div className="login-card">
 
         <h2>CRM Login</h2>
@@ -38,6 +68,7 @@ function Login() {
           placeholder="Enter Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
 
         <input
@@ -45,10 +76,11 @@ function Login() {
           placeholder="Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
 
-        <button onClick={handleLogin}>
-          Login
+        <button onClick={handleLogin} disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
         </button>
 
         <p style={{ marginTop: "15px" }}>
@@ -57,6 +89,7 @@ function Login() {
         </p>
 
       </div>
+
     </div>
   );
 }

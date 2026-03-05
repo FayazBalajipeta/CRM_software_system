@@ -1,59 +1,122 @@
-.sidebar {
-  width: 220px;
-  height: 100vh;
+/* ============================= */
+/* SIDEBAR                       */
+/* ============================= */
 
-  background: #1e293b;
-  color: white;
-
-  position: fixed;
-  left: 0;
-  top: 0;
-
-  padding: 20px;
-}
-
-.logo {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.sidebar li:hover {
-  background: #334155;
-}
 .sidebar{
 width:220px;
-background:#1f2a40;
-color:white;
 height:100vh;
+
+background:#1e293b;
+color:white;
+
 position:fixed;
-padding:20px;
+left:0;
+top:0;
+
+padding:25px 20px;
+
+display:flex;
+flex-direction:column;
 }
 
-.sidebar h2{
-margin-bottom:30px;
+/* ============================= */
+/* LOGO                          */
+/* ============================= */
+
+.logo{
+font-size:22px;
+font-weight:700;
+margin-bottom:40px;
+letter-spacing:1px;
 }
 
-.sidebar a{
+/* ============================= */
+/* MENU                          */
+/* ============================= */
+
+.menu{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.menu li{
+margin-bottom:15px;
+}
+
+.menu a{
 display:block;
-padding:10px;
+
+padding:10px 14px;
+
 color:#cbd5e1;
 text-decoration:none;
+
 border-radius:6px;
-margin-bottom:8px;
+
+font-size:15px;
+
+transition:0.2s;
 }
 
-.sidebar a:hover{
-background:#324060;
+.menu a:hover{
+background:#334155;
 color:white;
+}
+
+/* ============================= */
+/* BOTTOM USER SECTION           */
+/* ============================= */
+
+.sidebar-bottom{
+
+margin-top:auto;
+
+padding-top:20px;
+
+border-top:1px solid rgba(255,255,255,0.1);
+
+}
+
+/* User Info */
+
+.sidebar-user{
+
+display:flex;
+align-items:center;
+
+gap:8px;
+
+font-size:15px;
+margin-bottom:12px;
+
+color:#e2e8f0;
+
+}
+
+/* Logout Button */
+
+.logout-btn{
+
+width:100%;
+
+background:#ef4444;
+border:none;
+
+color:white;
+
+padding:10px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+font-size:14px;
+
+transition:0.2s;
+
+}
+
+.logout-btn:hover{
+background:#dc2626;
 }

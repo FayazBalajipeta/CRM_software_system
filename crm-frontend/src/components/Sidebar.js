@@ -2,28 +2,66 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
-function Sidebar() {
-  return (
-    <div className="sidebar">
+function Sidebar(){
 
-      <h2>CRM</h2>
+const user = "User";
 
-      <nav>
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  window.location.href = "/";
+};
 
-        <Link to="/dashboard">Dashboard</Link>
+return(
 
-        <Link to="/customers">Customers</Link>
+<div className="sidebar">
 
-        <Link to="/leads">Leads</Link>
+  <h2 className="logo">CRM SOFTWARE</h2>
 
-        <Link to="/tasks">Tasks</Link>
+  <ul className="menu">
 
-        <Link to="/sales">Sales</Link>
+    <li>
+      <Link to="/dashboard">Dashboard</Link>
+    </li>
 
-      </nav>
+    <li>
+      <Link to="/customers">Customers</Link>
+    </li>
 
+    <li>
+      <Link to="/leads">Leads</Link>
+    </li>
+
+    <li>
+      <Link to="/tasks">Tasks</Link>
+    </li>
+
+    <li>
+      <Link to="/sales">Sales</Link>
+    </li>
+
+  </ul>
+
+  {/* Bottom Section */}
+
+  <div className="sidebar-bottom">
+
+    <div className="sidebar-user">
+      👤 {user}
     </div>
-  );
+
+    <button
+      className="logout-btn"
+      onClick={handleLogout}
+    >
+      Logout
+    </button>
+
+  </div>
+
+</div>
+
+);
+
 }
 
 export default Sidebar;
