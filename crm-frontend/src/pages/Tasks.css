@@ -1,45 +1,207 @@
+/* ========================= */
+/* PAGE LAYOUT               */
+/* ========================= */
+
 .tasks-content{
+
 margin-left:220px;
-padding:30px;
-width:100%;
+width:calc(100% - 220px);
+
+padding:30px 40px;
+
 background:#f4f6fb;
+
 min-height:100vh;
+
 }
 
-.task-form{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
+/* ========================= */
+/* PAGE TITLE                */
+/* ========================= */
+
+.tasks-content h2{
+
+font-size:28px;
+font-weight:700;
+
+color:#374151;
+
 margin-bottom:25px;
+
 }
+
+/* ========================= */
+/* FORM CARD                 */
+/* ========================= */
+
+.task-form{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:15px;
+
+margin-bottom:25px;
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+
+}
+
+/* Inputs */
 
 .task-form input,
 .task-form select{
+
 padding:10px;
+
 border:1px solid #ddd;
+
 border-radius:6px;
+
+font-size:14px;
+
+}
+
+/* Button */
+
+.task-form button{
+
+grid-column:span 3;
+
+background:#4e73df;
+
+color:white;
+
+border:none;
+
+padding:10px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+font-weight:500;
+
+}
+
+.task-form button:hover{
+background:#2e59d9;
+}
+
+/* ========================= */
+/* TABLE CARD                */
+/* ========================= */
+
+.tasks-table{
+
+width:100%;
+
+background:white;
+
+border-radius:10px;
+
+overflow:hidden;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+
+}
+
+/* Table */
+
+.tasks-table table{
+width:100%;
+border-collapse:collapse;
+}
+
+/* Header */
+
+.tasks-table th{
+
+background:#f8f9fc;
+
+font-weight:600;
+
+padding:14px;
+
+text-align:left;
+
+}
+
+/* Rows */
+
+.tasks-table td{
+
+padding:14px;
+
+border-top:1px solid #eee;
+
+}
+
+/* ========================= */
+/* ACTION BUTTONS            */
+/* ========================= */
+
+.edit-btn{
+
+background:#4e73df;
+
+color:white;
+
+border:none;
+
+padding:6px 12px;
+
+border-radius:5px;
+
+margin-right:6px;
+
+cursor:pointer;
+
+}
+
+.edit-btn:hover{
+background:#2e59d9;
+}
+
+.delete-btn{
+
+background:#e74a3b;
+
+color:white;
+
+border:none;
+
+padding:6px 12px;
+
+border-radius:5px;
+
+cursor:pointer;
+
+}
+
+.delete-btn:hover{
+background:#c0392b;
+}
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media(max-width:1100px){
+
+.task-form{
+grid-template-columns:1fr;
 }
 
 .task-form button{
-grid-column:span 3;
-background:#4e73df;
-color:white;
-border:none;
-padding:10px;
-border-radius:6px;
-cursor:pointer;
+grid-column:span 1;
 }
 
-.tasks-table{
-width:100%;
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 4px 10px rgba(0,0,0,0.05);
-}
-
-.tasks-table th,
-.tasks-table td{
-padding:14px;
-border-bottom:1px solid #eee;
 }
