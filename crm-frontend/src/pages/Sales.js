@@ -191,6 +191,7 @@ onChange={handleChange}
 </span>
 </td>
 
+
 <td>{s.closingDate}</td>
 
 <td>{s.salesRep}</td>
