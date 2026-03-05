@@ -1,42 +1,77 @@
-/* Main layout */
+/* ========================= */
+/* MAIN LAYOUT               */
+/* ========================= */
 
 .dashboard-layout{
 display:flex;
+background:#f4f6fb;
+min-height:100vh;
 }
 
 /* Content area */
 
 .customers-content{
-margin-left:220px;
-padding:30px;
-width:100%;
-background:#f4f6fb;
+
+margin-left:220px; /* sidebar width */
+width:calc(100% - 220px);
+
+padding:30px 40px;
+
 min-height:100vh;
 }
 
-/* Page title */
+/* ========================= */
+/* PAGE TITLE                */
+/* ========================= */
 
 .customers-content h2{
-margin-bottom:20px;
+
+font-size:28px;
+font-weight:700;
+
+color:#374151;
+
+margin-bottom:25px;
+
 }
 
-/* Form layout */
+/* ========================= */
+/* FORM SECTION              */
+/* ========================= */
 
 .customer-form{
+
 display:grid;
+
 grid-template-columns:repeat(3,1fr);
+
 gap:15px;
+
 margin-bottom:25px;
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+
 }
 
 /* Inputs */
 
 .customer-form input,
 .customer-form textarea{
+
 padding:10px;
+
 border-radius:6px;
+
 border:1px solid #ddd;
+
 font-size:14px;
+
 }
 
 /* Notes full width */
@@ -45,73 +80,139 @@ font-size:14px;
 grid-column:span 3;
 }
 
-/* Button */
+/* Add Button */
 
 .customer-form button{
+
 grid-column:span 3;
+
 background:#4e73df;
+
 color:white;
+
 border:none;
+
 padding:10px;
+
 border-radius:6px;
+
 cursor:pointer;
+
 font-weight:500;
+
 }
 
 .customer-form button:hover{
 background:#2e59d9;
 }
 
-/* Table */
+/* ========================= */
+/* TABLE SECTION             */
+/* ========================= */
 
 .customers-table{
+
 width:100%;
+
 background:white;
+
 border-radius:10px;
+
 overflow:hidden;
+
 box-shadow:0 4px 10px rgba(0,0,0,0.05);
+
 }
 
-/* Table cells */
+/* Table */
 
-.customers-table th,
-.customers-table td{
-padding:14px;
-text-align:left;
-border-bottom:1px solid #eee;
+.customers-table table{
+width:100%;
+border-collapse:collapse;
 }
 
 /* Table header */
 
 .customers-table th{
+
 background:#f8f9fc;
+
 font-weight:600;
+
+padding:14px;
+
+text-align:left;
+
 }
 
-/* Delete button */
+/* Table rows */
+
+.customers-table td{
+
+padding:14px;
+
+border-top:1px solid #eee;
+
+}
+
+/* ========================= */
+/* BUTTONS                   */
+/* ========================= */
+
+.edit-btn{
+
+background:#4e73df;
+
+color:white;
+
+border:none;
+
+padding:6px 12px;
+
+margin-right:6px;
+
+border-radius:5px;
+
+cursor:pointer;
+
+}
+
+.edit-btn:hover{
+background:#2e59d9;
+}
 
 .delete-btn{
+
 background:#e74a3b;
+
 color:white;
+
 border:none;
+
 padding:6px 12px;
+
 border-radius:5px;
+
 cursor:pointer;
+
 }
 
 .delete-btn:hover{
 background:#c0392b;
 }
-.edit-btn{
-background:#4e73df;
-color:white;
-border:none;
-padding:6px 12px;
-margin-right:6px;
-border-radius:5px;
-cursor:pointer;
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media(max-width:1100px){
+
+.customer-form{
+grid-template-columns:1fr;
 }
 
-.edit-btn:hover{
-background:#2e59d9;
+.customer-form textarea{
+grid-column:span 1;
+}
+
 }
