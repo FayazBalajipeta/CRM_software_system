@@ -5,8 +5,10 @@ A Customer Relationship Management (CRM) System built with React.js and Spring B
 This application helps businesses manage customers, track leads, organize tasks, and monitor sales deals, while providing business insights through an analytics dashboard.
 
 Login access:
-email:admin1@gmail.com
-password:123456
+
+email:  admin1@gmail.com
+
+password:  123456
 
 📌 Project Overview
 
