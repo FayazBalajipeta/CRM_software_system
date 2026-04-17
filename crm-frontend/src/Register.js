@@ -1,29 +1,57 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Register() {
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("SALES");
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    role: "SALES"
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleRegister = async () => {
 
-    try {
-      await axios.post("http://localhost:8081/api/register", {
-        fullName,
-        email,
-        password,
-        role
-      });
+    if (!form.fullName || !form.email || !form.password) {
+      alert("Please fill all fields");
+      return;
+    }
 
-      alert("Registration Successful");
-      window.location.href = "/";
+    try {
+
+      setLoading(true);
+
+      await axios.post("http://localhost:8081/api/register", form);
+
+      alert("Registration Successful ✅");
+
+      navigate("/");
 
     } catch (error) {
-      alert("Registration Failed");
+
+      console.error(error);
+
+      if (error.response?.data) {
+        alert(error.response.data);
+      } else {
+        alert("Registration Failed ❌");
+      }
+
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -34,33 +62,49 @@ function Register() {
         <h2>Create Account</h2>
 
         <input
+          name="fullName"
           placeholder="Full Name"
-          onChange={(e)=>setFullName(e.target.value)}
+          value={form.fullName}
+          onChange={handleChange}
         />
 
         <input
+          name="email"
+          type="email"
           placeholder="Email"
-          onChange={(e)=>setEmail(e.target.value)}
+          value={form.email}
+          onChange={handleChange}
         />
 
         <input
+          name="password"
           type="password"
           placeholder="Password"
-          onChange={(e)=>setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
         />
 
-        <select onChange={(e)=>setRole(e.target.value)}>
-
+        <select
+          name="role"
+          value={form.role}
+          onChange={handleChange}
+        >
           <option value="SALES">Sales</option>
           <option value="ADMIN">Admin</option>
-
         </select>
 
-        <button onClick={handleRegister}>Register</button>
+        <button onClick={handleRegister} disabled={loading}>
+          {loading ? "Registering..." : "Register"}
+        </button>
 
-        <p style={{marginTop:"15px"}}>
-          Already have account? 
-          <a href="/"> Login</a>
+        <p style={{ marginTop: "15px" }}>
+          Already have account?
+          <span
+            onClick={() => navigate("/")}
+            style={{ color: "#4e73df", cursor: "pointer", marginLeft: "5px" }}
+          >
+            Login
+          </span>
         </p>
 
       </div>
