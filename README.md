@@ -4,6 +4,10 @@ A Customer Relationship Management (CRM) System built with React.js and Spring B
 
 This application helps businesses manage customers, track leads, organize tasks, and monitor sales deals, while providing business insights through an analytics dashboard.
 
+Login access:
+email:admin1@gmail.com
+password:123456
+
 📌 Project Overview
 
 The CRM platform centralizes customer interactions, sales pipelines, and task management into one system.
@@ -316,6 +320,20 @@ DELETE /api/sales/{id}
 📊 Dashboard Preview
 
 <img width="959" height="445" alt="CRM Dashboard" src="https://github.com/user-attachments/assets/750c9431-d999-4235-94d9-ac9f066e41dc" />
+
+customers page preview
+<img width="1912" height="781" alt="image" src="https://github.com/user-attachments/assets/3f4a9ac8-4110-4b45-9bc7-bcab9b30527a" />
+
+leads page preview
+<img width="1919" height="723" alt="image" src="https://github.com/user-attachments/assets/14d8786d-2b91-4975-bc8d-e3eb4a54bc41" />
+
+task page preview
+<img width="1917" height="714" alt="image" src="https://github.com/user-attachments/assets/693f4fbd-9a0b-43cc-952f-390d76af0ebb" />
+
+sales page preview
+<img width="1901" height="760" alt="image" src="https://github.com/user-attachments/assets/36d97230-c559-4516-80a8-2331718d8264" />
+
+
 
 🚀 Future Enhancements
 
